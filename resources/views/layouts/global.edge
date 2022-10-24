@@ -2,13 +2,48 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
+
+    {{-- app description for robots --}}
+
 	@section('description')
         <meta name="description" content="{{ env('APPNAME') }} site web utilitaire pour développeurs, Cours / Forum / Documentation">
     @end
-    <link rel="stylesheet" href="{{ asset('assets/app.css') }}">
+
+    {{-- added meta values --}}
+
+    @section('meta_values')
+    @end
+
+    {{-- add theme, nav and app css --}}
+
+    @!component('components/css',{
+        dirname : 'global',
+        filename : 'theme'
+    })
+
+    @!component('components/css',{
+        dirname : 'global',
+        filename : 'app'
+    })
+
+    @!component('components/css',{
+        dirname : 'includes',filename : 'global_nav'
+    })
+
+    {{-- added css --}}
+
+    @section('stylesheets')
+    @end
+
+    {{-- added js --}}
+
+    @section('js')
+    @end
+
 	<title>{{ title }}</title>
 </head>
 <body>
+    @include('includes/global_nav')
     @section('body')
     @end
 </body>
