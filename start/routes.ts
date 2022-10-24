@@ -17,3 +17,5 @@
 | import './routes/customer''
 |
 */
+
+import './routes/home'
