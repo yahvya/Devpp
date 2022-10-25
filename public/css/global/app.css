@@ -5,7 +5,7 @@
 :root
 {
 /*     values */
-    --basic-size: 18;
+    --basic-size: 15;
     --scale: 1.2;
     --reverse-scale: 0.8;
 
@@ -95,6 +95,16 @@ body
 .justify-around
 {
     justify-content: space-between;
+}
+
+.align-end
+{
+    align-items: flex-end;
+}
+
+.justify-end
+{
+    justify-content: flex-end;
 }
 
 .u

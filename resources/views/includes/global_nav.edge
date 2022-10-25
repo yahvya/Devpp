@@ -1,20 +1,32 @@
-<label for="global_nav_toggler" id="toggler">
+<label for="global-nav-toggler" id="toggler">
     <span></span>
     <span></span>
     <span></span>
 </label>
 
-<input type="checkbox" id="global_nav_toggler" autocomplete="on">
+<input type="checkbox" id="global-nav-toggler" autocomplete="on">
 
-<nav class="flex row justify-between align-center">
-    <img src="" alt="{{ env('APPNAME')  }}">
-    <ul class="nav-links">
-        <a href="#">Forums</a>
-        <a href="#">Cours</a>
-        <a href="#">Documentations</a>
-    </ul>
+<div id="global-nav" class="flex row align-center justify-between">
+    @!component('components/img',{
+        src : 'favicon.png',
+        alt: env('APPNAME')
+    })
 
-    <ul class="components">
-        <span class="searchbar"></span>
-    </ul>
-</nav>
+    <nav class="flex row justify-end">
+        <a href="#" title="Connectez">Se connecter</a>
+        <a href="#" title="S'inscrire">S'inscrire</a>
+        <a href="#" title="Accéder au forum">Forums</a>
+        <a href="#" title="Accéder aux cours">Cours</a>
+        <a href="#" title="Documentation">Accéder aux documentations</a>
+    </nav>
+
+    <div class="nav-components">
+        @!component('components/js_component',{
+            name : 'searchbar'
+        })
+
+        @!component('components/js_component',{
+            name: 'logout-btn'
+        })
+    </div>
+</div>

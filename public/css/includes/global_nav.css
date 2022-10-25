@@ -1,0 +1,9 @@
+#global-nav
+{
+    font-size: var(--larger-size);
+}
+
+.nav-links
+{
+    border: solid 1px red;
+}

@@ -1,1 +1,5 @@
-<script src="/js/{{ dirname }}/{{ filename }}.js" defer></script>
+<script src="/js/{{ dirname }}/{{ filename }}.js" defer
+@if(module)
+type="module"
+@end
+></script>
