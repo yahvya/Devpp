@@ -1,0 +1,15 @@
+<div class="container nav-element flex row align-center">
+    <i class="{{ f_classes }}"></i>
+    <a href="#" title="
+    @if(title)
+        {{ title }}
+    @else
+        {{ link_text }}
+    @end
+    "
+    @if(blank)
+        target="_blank"
+    @end
+    class="special-underline"
+    >{{ link_text }}</a>
+</div>

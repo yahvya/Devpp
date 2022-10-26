@@ -1,9 +1,27 @@
+#global-nav-toggler
+{
+    display: none;
+}
+
 #global-nav
 {
     font-size: var(--larger-size);
+    padding: 15px;
+    background-color: var(--subcolor);
 }
 
-.nav-links
+#global-nav > *:not(#global-nav > *:last-child)
 {
-    border: solid 1px red;
+    border-right: solid 1.5px var(--sub-in-subcolor);
+    padding-right: 20px;
+}
+
+#global-nav .container > *:not(#global-nav .container > *:last-child)
+{
+    margin-right: 5px;
+}
+
+#global-nav .nav-element:not(#global-nav .nav-element:last-child)
+{
+   margin-right: 20px !important;
 }

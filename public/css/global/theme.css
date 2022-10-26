@@ -1,5 +1,8 @@
 /* themes default config */
 :root
 {
-    --body-background: white;
+    --body-background: #19191c;
+    --basic-text-color: #D4DCFF;
+    --subcolor: #202124;
+    --sub-in-subcolor: #D4DCFF;
 }

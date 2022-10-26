@@ -7,26 +7,54 @@
 <input type="checkbox" id="global-nav-toggler" autocomplete="on">
 
 <div id="global-nav" class="flex row align-center justify-between">
-    @!component('components/img',{
-        src : 'favicon.png',
-        alt: env('APPNAME')
-    })
+    <a class="block website-favicon" href="{{ route('home_page') }}" title="Accueil">
+        @!component('components/img',{
+            src : 'favicon.png',
+            alt: env('APPNAME')
+        })
+    </a>
 
-    <nav class="flex row justify-end">
-        <a href="#" title="Connectez">Se connecter</a>
-        <a href="#" title="S'inscrire">S'inscrire</a>
-        <a href="#" title="Accéder au forum">Forums</a>
-        <a href="#" title="Accéder aux cours">Cours</a>
-        <a href="#" title="Documentation">Accéder aux documentations</a>
+    <nav class="flex row justify-end container">
+        @!component('components/global_nav_element',{
+            f_classes: 'fa-solid fa-right-to-bracket',
+            link_text : 'Se connecter'
+        })
+
+        @!component('components/global_nav_element',{
+            f_classes: 'fa-solid fa-plus',
+            link_text: 'S\'inscrire'
+        })
+
+        @!component('components/global_nav_element',{
+            f_classes: 'fa-solid fa-users',
+            title : 'Accéder au forum',
+            link_text: 'Forums'
+        })
+
+        @!component('components/global_nav_element',{
+            f_classes: 'fa-solid fa-lightbulb',
+            title: 'Accéder aux cours',
+            link_text: 'Cours'
+        })
+
+        @!component('components/global_nav_element',{
+            f_classes: 'fa-solid fa-book',
+            title: 'Accéder aux documentations',
+            link_text: 'Documentations'
+        })
     </nav>
 
-    <div class="nav-components">
+    <div class="nav-components flex justify-end">
         @!component('components/js_component',{
             name : 'searchbar'
         })
 
         @!component('components/js_component',{
             name: 'logout-btn'
+        })
+
+        @!component('components/js_component',{
+            name: 'theme-switcher'
         })
     </div>
 </div>

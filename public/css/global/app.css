@@ -5,7 +5,7 @@
 :root
 {
 /*     values */
-    --basic-size: 15;
+    --basic-size: 13;
     --scale: 1.2;
     --reverse-scale: 0.8;
 
@@ -23,6 +23,7 @@ body
     font-size: var(--normal-size);
     font-family: 'Poppins','Arial';
     background-color: var(--body-background);
+    color: var(--basic-text-color);
 }
 
 /* global class list */
@@ -47,7 +48,7 @@ body
     display: flex;
 }
 
-.block
+.block,.special-underline::before
 {
     display: block;
 }
@@ -92,7 +93,7 @@ body
     align-items: space-between;
 }
 
-.justify-around
+.justify-between
 {
     justify-content: space-between;
 }
@@ -143,6 +144,29 @@ body
 .m-auto
 {
     margin: auto;
+}
+
+.special-underline
+{
+    position: relative;
+}
+
+.special-underline::before
+{
+    position: absolute;
+    content: '';
+    width: 0%;
+    height: 2px;
+    background-color: var(--sub-in-subcolor);
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
+    transition: width 0.3s;
+}
+
+.special-underline:hover::before
+{
+    width: 90%;
 }
 
 /* elements default css */
