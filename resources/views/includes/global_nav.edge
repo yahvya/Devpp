@@ -1,12 +1,13 @@
-<label for="global-nav-toggler" id="toggler">
-    <span></span>
-    <span></span>
-    <span></span>
-</label>
-
-<input type="checkbox" id="global-nav-toggler" autocomplete="on">
+<input type="checkbox" id="global-nav-toggler-input" autocomplete="on">
 
 <div id="global-nav" class="flex row align-center justify-between">
+
+    <label for="global-nav-toggler-input" id="global-nav-toggler" class="column align-center justify-center">
+        <span class="block"></span>
+        <span class="block"></span>
+        <span class="block"></span>
+    </label>
+
     <a class="block website-favicon" href="{{ route('home_page') }}" title="Accueil">
         @!component('components/img',{
             src : 'favicon.png',
@@ -50,11 +51,11 @@
         })
 
         @!component('components/js_component',{
-            name: 'logout-btn'
+            name: 'theme-switcher'
         })
 
         @!component('components/js_component',{
-            name: 'theme-switcher'
+            name: 'logout-btn'
         })
     </div>
 </div>

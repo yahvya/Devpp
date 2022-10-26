@@ -36,11 +36,17 @@
         filename : 'global_nav'
     })
 
-    {{-- add m_app js --}}
+    {{-- add m_app and global_nav js --}}
 
     @!component('components/js',{
         dirname : 'global',
         filename : 'm_app',
+        module : true
+    })
+
+    @!component('components/js',{
+        dirname : 'includes',
+        filename : 'global_nav',
         module : true
     })
 

@@ -1,6 +1,31 @@
-#global-nav-toggler
+#global-nav-toggler-input,#global-nav-toggler
 {
     display: none;
+}
+
+#global-nav-toggler
+{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+    border-left: solid 2px transparent;
+}
+
+#global-nav-toggler span
+{
+    width: 90%;
+    height: 3px;
+    border-radius: 5px;
+    background-color: var(--sub-in-subcolor);
+    transition: transform 0.3s;
+}
+
+#global-nav-toggler span:nth-child(2)
+{
+    width: 85%;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 #global-nav
@@ -10,18 +35,114 @@
     background-color: var(--subcolor);
 }
 
-#global-nav > *:not(#global-nav > *:last-child)
-{
-    border-right: solid 1.5px var(--sub-in-subcolor);
-    padding-right: 20px;
-}
-
 #global-nav .container > *:not(#global-nav .container > *:last-child)
 {
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
-#global-nav .nav-element:not(#global-nav .nav-element:last-child)
+#global-nav .nav-element:not(#global-nav .nav-element:last-child),#global-nav .nav-components > *:not(#global-nav .nav-components > *:last-child)
 {
    margin-right: 20px !important;
 }
+
+@media screen and (max-width: 850px)
+{
+    #global-nav-toggler
+    {
+        display: flex;
+        background-color: var(--body-background);
+        margin-bottom: 0px !important;
+    }
+
+    #global-nav-toggler-input:checked ~ #global-nav > #global-nav-toggler
+    {
+        border-left-color: var(--sub-in-subcolor);
+        margin-bottom: 20px !important;
+    }
+
+    #global-nav-toggler-input:checked ~ #global-nav > #global-nav-toggler,#global-nav
+    {
+        background-color: transparent;
+    }
+
+    #global-nav-toggler-input:checked ~ #global-nav > #global-nav-toggler span
+    {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 65%;
+    }
+
+    #global-nav-toggler-input:checked ~ #global-nav > #global-nav-toggler span:nth-child(1)
+    {
+        transform: translate(-50%,-50%) rotate(45deg);
+    }
+
+    #global-nav-toggler-input:checked ~ #global-nav > #global-nav-toggler span:nth-child(3)
+    {
+        transform: translate(-50%,-50%) rotate(-45deg);
+    }
+
+    #global-nav-toggler-input:checked ~ #global-nav > #global-nav-toggler span:nth-child(2)
+    {
+        display: none;
+    }
+
+    #global-nav
+    {
+        width: fit-content;
+        padding: 0px;
+    }
+
+    #global-nav-toggler-input:checked ~ #global-nav
+    {
+        background-color: var(--subcolor);
+        padding: 15px;
+        min-width: 250px;
+        max-width: 99vw;
+        height: 100vh;
+        overflow-y: scroll;
+    }
+
+    #global-nav-toggler-input:checked ~ #global-nav > *:not(#global-nav-toggler)
+    {
+        transform: translate(0px);
+    }
+
+    #global-nav,#global-nav nav
+    {
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #global-nav > *:not(#global-nav > *:last-child),#global-nav nav > *:not(#global-nav nav > *:last-child)
+    {
+        margin-bottom: 20px;
+    }
+
+    #global-nav nav i
+    {
+        width: 25px;
+    }
+
+
+    #global-nav .nav-components
+    {
+        margin-top: 40px;
+    }
+
+    #global-nav > *:not(#global-nav-toggler)
+    {
+        transform: translateX(-1000%);
+        transition: transform 0.3s;
+    }
+}
+
+
+
+
+
+
+
+

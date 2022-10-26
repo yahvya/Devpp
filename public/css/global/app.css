@@ -16,6 +16,11 @@
     --x-larger-size: calc(calc(var(--basic-size) * var(--scale) ) * 2px);
 }
 
+*
+{
+    box-sizing: border-box;
+}
+
 body
 {
     margin: 0px;

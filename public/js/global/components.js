@@ -58,6 +58,7 @@ class SearchBar extends Components
 
         this.create_component(['fa-solid','fa-magnifying-glass'])
 
+        this.component_icon_container.title = 'Faîtes une recherche sur le site'
         this.component_icon.addEventListener('click',this.show_searchbox)
     }
 
@@ -79,7 +80,20 @@ class SearchBar extends Components
 
 class LogoutButton extends Components
 {
+    constructor(to_replace,element_classes)
+    {
+        super(to_replace,element_classes)
 
+        const logout_event = new CustomEvent('logout')
+
+        this.create_component(['fa-solid','fa-power-off'])
+
+        this.component_icon_container.title = 'Se déconnecter'
+        this.component_icon.addEventListener('click',() => {
+
+            window.dispatchEvent(logout_event)
+        })
+    }
 }
 
 class Terminal extends Components
@@ -89,7 +103,22 @@ class Terminal extends Components
 
 class ThemeSwitcher extends Components
 {
+    chooser = null
 
+    constructor(to_replace,element_classes)
+    {
+        super(to_replace,element_classes)
+
+        this.create_component(['fa-solid','fa-palette'])
+
+        this.component_icon_container.title = 'Choisir le thème'
+        this.component_icon.addEventListener('click',this.show_theme_chooser)
+    }
+
+    show_theme_chooser()
+    {
+
+    }
 }
 
 // list of components and their associated classes
