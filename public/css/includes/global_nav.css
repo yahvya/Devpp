@@ -1,3 +1,8 @@
+:root
+{
+    --component-bg-hover: var(--body-background);
+}
+
 #global-nav-toggler-input,#global-nav-toggler
 {
     display: none;
@@ -33,6 +38,7 @@
     font-size: var(--larger-size);
     padding: 15px;
     background-color: var(--subcolor);
+    z-index: var(--middle-up);
 }
 
 #global-nav .container > *:not(#global-nav .container > *:last-child)
@@ -43,6 +49,14 @@
 #global-nav .nav-element:not(#global-nav .nav-element:last-child),#global-nav .nav-components > *:not(#global-nav .nav-components > *:last-child)
 {
    margin-right: 20px !important;
+}
+
+
+#global-nav .website-favicon img
+{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
 }
 
 @media screen and (max-width: 850px)
@@ -92,6 +106,7 @@
     {
         width: fit-content;
         padding: 0px;
+        position: fixed;
     }
 
     #global-nav-toggler-input:checked ~ #global-nav

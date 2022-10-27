@@ -30,21 +30,97 @@ class Components
 class SearchBox extends Components
 {
     show_state = false
+    searchbox_container
+    searchbar
+    closebox_icon
+    results_list
+
+    constructor(to_replace,element_classes)
+    {
+        super(to_replace,element_classes)
+
+        this.create_component()
+    }
 
     create_component()
     {
+        this.searchbox_container = document.getElementById('searchbox-component')
 
+        if(this.searchbox_container == null)
+        {
+            this.searchbox_container = document.createElement('div')
+            this.closebox_icon = document.createElement('i')
+            this.searchbar = document.createElement('input')
+            this.results_list = document.createElement('div')
+
+            let searchbox_searchbar_container = document.createElement('div')
+            let glass_icon = document.createElement('i')
+            let result_text = document.createElement('p')
+
+            this.closebox_icon.classList.add('fa-solid','fa-circle-xmark','searchbox-component-close')
+            this.closebox_icon.addEventListener('click',() => {
+
+                this.searchbox_container.setAttribute('data-show',false)
+                this.show_state = false
+            })
+
+            this.searchbar.type = 'text'
+            this.searchbar.placeholder = 'Entrez votre recherche'
+
+            glass_icon.classList.add('fa-solid','fa-magnifying-glass')
+
+            searchbox_searchbar_container.classList.add('searchbox-searchbar-container','m-auto')
+            searchbox_searchbar_container.append(this.searchbar,glass_icon)
+
+            result_text.classList.add('results-title')
+            result_text.append(document.createTextNode('Résultat(s) : ') )
+
+            this.results_list.classList.add('searchbox-result-list')
+
+            this.searchbox_container.append(this.closebox_icon,searchbox_searchbar_container,result_text,this.results_list)
+            this.searchbox_container.id = 'searchbox-component'
+            this.searchbox_container.classList.add('component')
+            this.searchbox_container.setAttribute('data-show',this.show_state)
+
+            document.body.append(this.searchbox_container)
+        }
+        else
+        {
+            this.show_state = this.searchbox_container.getAttribute('data-show')
+
+            this.searchbar = this.searchbox_container.querySelector('.searchbox-searchbar-container input')
+            this.closebox_icon = this.searchbox_container.querySelector('searchbox-component-close')
+            this.results_list = this.searchbox_container.querySelector('.searchbox-result-list')
+        }
     }
 
     show()
     {
+        if(this.searchbox_container.getAttribute('data-show') == 'false')
+        {
+            this.searchbox_container.setAttribute('data-show',true)
 
+            this.show_state = true
+        }
     }
 
     is_showed()
     {
         return this.show_state
     }
+
+    create_new_result(result)
+    {
+        let new_result = document.createElement('div')
+
+        new_result.classList.add('searchbox-result-container')
+        new_result.innerHTML = result
+    }
+}
+
+class Chooser extends Components
+{
+
 }
 
 // searchbar component
@@ -148,8 +224,6 @@ export default function create_components()
         }
     })
 }
-
-
 
 
 
