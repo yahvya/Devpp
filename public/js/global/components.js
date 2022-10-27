@@ -44,54 +44,41 @@ class SearchBox extends Components
 
     create_component()
     {
-        this.searchbox_container = document.getElementById('searchbox-component')
+        this.searchbox_container = document.createElement('div')
+        this.closebox_icon = document.createElement('i')
+        this.searchbar = document.createElement('input')
+        this.results_list = document.createElement('div')
 
-        if(this.searchbox_container == null)
-        {
-            this.searchbox_container = document.createElement('div')
-            this.closebox_icon = document.createElement('i')
-            this.searchbar = document.createElement('input')
-            this.results_list = document.createElement('div')
+        let searchbox_searchbar_container = document.createElement('div')
+        let glass_icon = document.createElement('i')
+        let result_text = document.createElement('p')
 
-            let searchbox_searchbar_container = document.createElement('div')
-            let glass_icon = document.createElement('i')
-            let result_text = document.createElement('p')
+        this.closebox_icon.classList.add('fa-solid','fa-circle-xmark','searchbox-component-close')
+        this.closebox_icon.addEventListener('click',() => {
 
-            this.closebox_icon.classList.add('fa-solid','fa-circle-xmark','searchbox-component-close')
-            this.closebox_icon.addEventListener('click',() => {
+            this.searchbox_container.setAttribute('data-show',false)
+            this.show_state = false
+        })
 
-                this.searchbox_container.setAttribute('data-show',false)
-                this.show_state = false
-            })
+        this.searchbar.type = 'text'
+        this.searchbar.placeholder = 'Entrez votre recherche'
 
-            this.searchbar.type = 'text'
-            this.searchbar.placeholder = 'Entrez votre recherche'
+        glass_icon.classList.add('fa-solid','fa-magnifying-glass')
 
-            glass_icon.classList.add('fa-solid','fa-magnifying-glass')
+        searchbox_searchbar_container.classList.add('searchbox-searchbar-container','m-auto')
+        searchbox_searchbar_container.append(this.searchbar,glass_icon)
 
-            searchbox_searchbar_container.classList.add('searchbox-searchbar-container','m-auto')
-            searchbox_searchbar_container.append(this.searchbar,glass_icon)
+        result_text.classList.add('results-title')
+        result_text.append(document.createTextNode('Résultat(s) : ') )
 
-            result_text.classList.add('results-title')
-            result_text.append(document.createTextNode('Résultat(s) : ') )
+        this.results_list.classList.add('searchbox-result-list')
 
-            this.results_list.classList.add('searchbox-result-list')
+        this.searchbox_container.append(this.closebox_icon,searchbox_searchbar_container,result_text,this.results_list)
+        this.searchbox_container.id = 'searchbox-component'
+        this.searchbox_container.classList.add('component')
+        this.searchbox_container.setAttribute('data-show',this.show_state)
 
-            this.searchbox_container.append(this.closebox_icon,searchbox_searchbar_container,result_text,this.results_list)
-            this.searchbox_container.id = 'searchbox-component'
-            this.searchbox_container.classList.add('component')
-            this.searchbox_container.setAttribute('data-show',this.show_state)
-
-            document.body.append(this.searchbox_container)
-        }
-        else
-        {
-            this.show_state = this.searchbox_container.getAttribute('data-show')
-
-            this.searchbar = this.searchbox_container.querySelector('.searchbox-searchbar-container input')
-            this.closebox_icon = this.searchbox_container.querySelector('searchbox-component-close')
-            this.results_list = this.searchbox_container.querySelector('.searchbox-result-list')
-        }
+        document.body.append(this.searchbox_container)
     }
 
     show()
@@ -126,6 +113,8 @@ class Chooser extends Components
 // searchbar component
 class SearchBar extends Components
 {
+    static s_searchbox = null
+
     searchbox = null
 
     constructor(to_replace,element_classes)
@@ -135,22 +124,34 @@ class SearchBar extends Components
         this.create_component(['fa-solid','fa-magnifying-glass'])
 
         this.component_icon_container.title = 'Faîtes une recherche sur le site'
-        this.component_icon.addEventListener('click',this.show_searchbox)
-    }
 
-    show_searchbox()
-    {
-        if(this.searchbox == null)
+        if(SearchBar.s_searchbox == null)
         {
             let element_to_replace = document.createElement('span')
 
             document.body.append(element_to_replace)
 
             this.searchbox = new SearchBox(element_to_replace,[])
-        }
 
-        if(!this.searchbox.is_showed() )
-            this.searchbox.show()
+            this.component_icon.addEventListener('click',() => {
+                this.show_searchbox(this.searchbox)
+            })
+
+            SearchBar.s_searchbox = this.searchbox
+        }
+        else
+        {
+            this.component_icon.addEventListener('click',() => {
+
+                this.show_searchbox(SearchBar.s_searchbox)
+            })
+        }
+    }
+
+    show_searchbox(searchbox)
+    {
+        if(!searchbox.is_showed() )
+            searchbox.show()
     }
 }
 
